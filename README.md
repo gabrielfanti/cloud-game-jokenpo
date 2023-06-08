@@ -1,6 +1,10 @@
 # Jokenpo AWS Lambda
 
-Este projeto é uma implementação simples do jogo Jokenpo (Pedra, Papel, Tesoura) usando AWS Lambda e API Gateway.
+Este projeto é uma implementação simples do jogo Jokenpo (Pedra, Papel, Tesoura) usando AWS Lambda e API Gateway. Foi desenvolvido como parte de um projeto para a disciplina de Arquitetura Cloud na Faculdade UMFG.
+
+## Descrição
+
+O objetivo deste projeto é criar uma API que permita que os usuários joguem Jokenpo através de solicitações HTTP. A API recebe a escolha do usuário (pedra, papel ou tesoura) e seleciona aleatoriamente uma escolha para a máquina. Em seguida, determina o vencedor com base nas escolhas do jogador e da máquina.
 
 ## Funcionalidades
 
