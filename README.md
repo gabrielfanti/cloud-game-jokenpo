@@ -1,25 +1,54 @@
-# Jokenpo AWS Lambda
+# Serverless Rock–Paper–Scissors API on AWS
 
-Este projeto é uma implementação simples do jogo Jokenpo (Pedra, Papel, Tesoura) usando AWS Lambda e API Gateway. Foi desenvolvido como parte de um projeto para a disciplina de Arquitetura Cloud na Faculdade UMFG.
+This project is a serverless REST API that implements the classic Rock–Paper–Scissors game using AWS Lambda and Amazon API Gateway. It was originally developed as part of a Cloud Architecture course and later refined to demonstrate practical knowledge of serverless computing, RESTful API design, and event-driven backend development in AWS.
 
-## Descrição
+## Project Overview
 
-O objetivo deste projeto é criar uma API que permita que os usuários joguem Jokenpo através de solicitações HTTP. A API recebe a escolha do usuário (pedra, papel ou tesoura) e seleciona aleatoriamente uma escolha para a máquina. Em seguida, determina o vencedor com base nas escolhas do jogador e da máquina.
+The objective of this project is to design and deploy a lightweight, scalable API that allows users to play Rock–Paper–Scissors through HTTP requests. When a client sends a POST request with their choice (`rock`, `paper`, or `scissors`), API Gateway receives and routes the request, AWS Lambda executes the game logic, a random choice is generated for the system, the winner is determined based on the game rules, and a structured JSON response is returned. The solution follows a stateless execution model and requires no server management.
 
-## Funcionalidades
+## Architecture
 
-- O jogador faz uma escolha (pedra, papel ou tesoura) e a API seleciona uma escolha aleatória para a máquina.
-- A API determina o vencedor com base nas escolhas do jogador e da máquina.
+Services used: AWS Lambda (serverless compute), Amazon API Gateway (REST endpoint), and Amazon CloudWatch (logging and monitoring). Architecture flow: Client → API Gateway → Lambda Function → JSON Response. The application is stateless, event-driven, automatically scalable, and operates under a pay-per-request model with fully managed infrastructure.
 
-## Como testar no Postman
+## Features
 
-1. Abra o Postman ou uma ferramenta similar para fazer solicitações HTTP.
-2. Crie uma solicitação POST.
-3. Insira o URL da API: `https://hy0gp41bt1.execute-api.us-east-2.amazonaws.com/playJokenpo`.
-4. No cabeçalho da solicitação, adicione um cabeçalho "Content-Type" com o valor "application/json".
-5. No corpo da solicitação, selecione a opção "Raw" e escolha o tipo de dados como "JSON (application/json)".
-6. Insira o seguinte JSON no corpo da solicitação, ou mude o valor do user_choice de acordo com sua escolha (pedra, papel ou tesoura):
-   ```json
-   {
-     "user_choice": "pedra"
-   }
+- Accepts user input (`rock`, `paper`, `scissors`)
+- Randomized system selection
+- Deterministic winner evaluation
+- Structured JSON responses
+- Deployed in AWS using serverless architecture
+- Easily extendable to include persistence, authentication, CI/CD pipelines, or infrastructure as code
+
+## API Endpoint
+
+POST https://hy0gp41bt1.execute-api.us-east-2.amazonaws.com/playJokenpo
+
+Headers:
+Content-Type: application/json
+
+Example request body:
+{
+  "user_choice": "rock"
+}
+
+Example response:
+{
+  "user_choice": "rock",
+  "system_choice": "scissors",
+  "result": "You win!"
+}
+
+## How to Test
+
+Using Postman or a similar HTTP client: create a new POST request, add the endpoint URL, set the header `Content-Type` to `application/json`, provide a JSON body with the `user_choice`, send the request, and inspect the response.
+
+## What This Project Demonstrates
+
+- Practical experience with AWS serverless services
+- REST API implementation and HTTP handling
+- Backend business logic development
+- Stateless architecture design
+- Cloud-native application structure
+- Basic observability through CloudWatch logs
+
+This project can be expanded with automated testing (unit and integration tests), CI/CD pipelines (e.g., GitHub Actions), Infrastructure as Code (Terraform or CloudFormation), authentication and authorization layers, DynamoDB integration, or containerized deployment strategies.
